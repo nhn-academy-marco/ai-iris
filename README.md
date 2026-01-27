@@ -4,6 +4,7 @@ Spring Boot 기반의 로컬 머신러닝 모델(DL4J)을 활용한 붓꽃(Iris)
 
 ### 서비스 데모
 - **데모 주소**: [http://ai.java21.net/iris/](http://ai.java21.net/iris/)
+- **GitHub 저장소**: [https://github.com/nhn-academy-marco/ai-iris](https://github.com/nhn-academy-marco/ai-iris)
 
 ---
 
