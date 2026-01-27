@@ -64,7 +64,7 @@ public class IrisViewController {
     </style>
 </head>
 <body>
-    <h1>🌸 Iris Species Classifier</h1>
+    <h1>Iris Species Classifier</h1>
     
     <div id="input-form">
         <div class="input-group">

@@ -1,6 +1,6 @@
-# Project: Iris Classifier & Gemini AI Insight
+# Project: Iris Classifier
 
-**Spring Boot 기반의 로컬 머신러닝 및 생성형 AI 결합 서비스**
+**Spring Boot 기반의 로컬 머신러닝 서비스**
 
 ## 학습목표
 
@@ -18,11 +18,6 @@
     - Chart.js를 활용한 동적 그래프 구현
     - Thymeleaf 템플릿 엔진 활용
     - JavaScript Fetch API 기반 비동기 통신
-
-4. **생성형 AI 서비스 연동**
-    - Google Gemini API 통합
-    - 프롬프트 엔지니어링 기법 습득
-    - AI 응답 처리 및 동적 렌더링
 
 ## **Step 1: 프로젝트 기초 설정 (Setup)**
 
@@ -53,16 +48,6 @@
 
 * **학습 포인트:** 수치 데이터를 직관적인 그래프로 변환하는 프론트엔드 연동 기술.
 
-## **Step 6: Gemini AI 전문가 해설 연동 (GenAI Insight)**
-
-* **목표:** LLM을 활용하여 예측 결과에 풍부한 스토리텔링 추가.
-* **내용:** * **Gemini API 연동:** 예측된 품종명을 기반으로 상세 해설 요청.
-* **Prompt Engineering:** "전문 식물학자" 페르소나를 부여하여 재배 팁, 꽃말 등의 콘텐츠 생성.
-* **응답 처리:** 차트 아래에 Gemini가 생성한 텍스트 가이드를 동적으로 렌더링.
-
-
-* **학습 포인트:** 외부 생성형 AI API 연동 방식과 프롬프트 엔지니어링의 기초.
-
 ---
 
 ## 단계별 학습 요약 및 참고 링크
@@ -71,13 +56,12 @@
 | --- | --- | --- |
 | **Step 1-4** | DL4J, ND4J, Inference | [DL4J Examples](https://github.com/eclipse/deeplearning4j-examples) |
 | **Step 5** | Chart.js, Async Fetch | [Chart.js Samples](https://www.chartjs.org/docs/latest/samples/bar/vertical.html) |
-| **Step 6** | Gemini API, Prompt | [Google AI Studio](https://aistudio.google.com/) |
 
 ---
 
 ## 교육적 기대효과
 
-이 커리큘럼을 통해 학생들은 **"정적인 수치 예측"** 에서 시작해 **"동적인 데이터 시각화"** 를 거쳐, 마지막에는 **"대화형 AI 서비스"** 로 진화하는 과정을 경험하게 됩니다. 이는 현대적인 백엔드 개발자가 갖춰야 할 통합적인 시각을 길러줍니다.
+이 커리큘럼을 통해 학생들은 **"정적인 수치 예측"** 에서 시작해 **"동적인 데이터 시각화"** 를 거쳐 완성도 있는 웹 서비스를 구축하는 과정을 경험하게 됩니다. 이는 현대적인 백엔드 개발자가 갖춰야 할 통합적인 시각을 길러줍니다.
 
 ---
 
