@@ -1,5 +1,6 @@
 package com.nhnacademy.nhnacademyaiirisclassifier.service;
 
+import com.nhnacademy.nhnacademyaiirisclassifier.config.ModelProperties;
 import com.nhnacademy.nhnacademyaiirisclassifier.dto.IrisRequest;
 import com.nhnacademy.nhnacademyaiirisclassifier.dto.IrisResponse;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class IrisModelService {
-    private static final String MODEL_PATH = "model/iris-model.zip";
+    private final ModelProperties modelProperties;
     private MultiLayerNetwork model;
 
     public void setModel(MultiLayerNetwork model) {
@@ -40,10 +41,10 @@ public class IrisModelService {
 
     @EventListener(ApplicationReadyEvent.class) // [1] 서버 시작 직후 실행
     public void initModel() throws IOException {
-        File modelFile = new File(MODEL_PATH);
+        File modelFile = new File(modelProperties.getModelPath());
 
         if (modelFile.exists()) {
-            log.info("학습된 모델이 이미 존재합니다. 자동 학습을 건너뜁니다.");
+            log.info("학습된 모델이 이미 존재합니다. 자동 학습을 건너뜜니다.");
             return;
         }
 
@@ -77,8 +78,8 @@ public class IrisModelService {
         }
 
         // 4. 모델 저장 (Serialization)
-        ModelSerializer.writeModel(model, new File(MODEL_PATH), true);
-        log.info("모델 학습 및 저장이 완료되었습니다: {}", MODEL_PATH);
+        ModelSerializer.writeModel(model, new File(modelProperties.getModelPath()), true);
+        log.info("모델 학습 및 저장이 완료되었습니다: {}", modelProperties.getModelPath());
     }
 
     public IrisResponse predict(IrisRequest request) {

@@ -13,14 +13,14 @@ import java.io.IOException;
 @Configuration
 @RequiredArgsConstructor
 public class MultiLayerNetworkConfig {
-    private static final String MODEL_PATH = "model/iris-model.zip";
     private final IrisModelService irisModelService;
+    private final ModelProperties modelProperties;
 
     @Bean
     public MultiLayerNetwork multiLayerNetwork() throws IOException {
         irisModelService.initModel(); // Ensure model is initialized/loaded
 
-        File modelFile = new File(MODEL_PATH);
+        File modelFile = new File(modelProperties.getModelPath());
 
         MultiLayerNetwork model = null;
         if (modelFile.exists()) {
