@@ -1,0 +1,50 @@
+### Iris 품종 예측 API 테스트
+
+# @name predict-setosa
+# Setosa 품종 예측 테스트
+# - 작은 꽃잎(petal) 크기가 특징 (petalLength < 2.0)
+# - 넓은 꽃받침(sepal) 너비가 특징 (sepalWidth > 3.0)
+# 예상 결과: Setosa 품종으로 분류되며 높은 확률(>90%)을 보임
+POST http://localhost:8080/api/iris/predict
+Content-Type: application/json
+
+{
+  "sepalLength": 5.1,
+  "sepalWidth": 3.5,
+  "petalLength": 1.4,
+  "petalWidth": 0.2
+}
+
+###
+
+# @name predict-versicolor
+# Versicolor 품종 예측 테스트
+# - 중간 크기의 꽃잎(petal)이 특징 (3.0 < petalLength < 5.0)
+# - 좁은 꽃받침(sepal) 너비가 특징 (sepalWidth < 2.5)
+# 예상 결과: Versicolor 품종으로 분류되며 중간~높은 확률(70-90%)을 보임
+POST http://localhost:8080/api/iris/predict
+Content-Type: application/json
+
+{
+  "sepalLength": 6.0,
+  "sepalWidth": 2.2,
+  "petalLength": 4.0,
+  "petalWidth": 1.0
+}
+
+###
+
+# @name predict-virginica
+# Virginica 품종 예측 테스트
+# - 큰 꽃잎(petal) 크기가 특징 (petalLength > 5.0)
+# - 넓은 꽃잎(petal) 너비가 특징 (petalWidth > 1.8)
+# 예상 결과: Virginica 품종으로 분류되며 높은 확률(>80%)을 보임
+POST http://localhost:8080/api/iris/predict
+Content-Type: application/json
+
+{
+  "sepalLength": 6.3,
+  "sepalWidth": 3.3,
+  "petalLength": 6.0,
+  "petalWidth": 2.5
+}

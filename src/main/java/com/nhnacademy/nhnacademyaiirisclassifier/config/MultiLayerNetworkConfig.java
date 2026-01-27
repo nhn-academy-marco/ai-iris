@@ -1,0 +1,36 @@
+package com.nhnacademy.nhnacademyaiirisclassifier.config;
+
+import com.nhnacademy.nhnacademyaiirisclassifier.service.IrisModelService;
+import lombok.RequiredArgsConstructor;
+import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
+import org.deeplearning4j.util.ModelSerializer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.io.File;
+import java.io.IOException;
+
+@Configuration
+@RequiredArgsConstructor
+public class MultiLayerNetworkConfig {
+    private static final String MODEL_PATH = "model/iris-model.zip";
+    private final IrisModelService irisModelService;
+
+    @Bean
+    public MultiLayerNetwork multiLayerNetwork() throws IOException {
+        irisModelService.initModel(); // Ensure model is initialized/loaded
+
+        File modelFile = new File(MODEL_PATH);
+
+        MultiLayerNetwork model = null;
+        if (modelFile.exists()) {
+            // [1] 저장된 모델 파일을 읽어와서 객체로 복원(역직렬화)
+            model = ModelSerializer.restoreMultiLayerNetwork(modelFile);
+        }
+
+        // 서비스에 로드된 모델을 설정해줍니다. (순환 참조 방지를 위해 수정자 주입 활용)
+        irisModelService.setModel(model);
+
+        return model;
+    }
+}
