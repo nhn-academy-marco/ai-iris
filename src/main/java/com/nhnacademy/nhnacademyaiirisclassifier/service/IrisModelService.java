@@ -44,7 +44,7 @@ public class IrisModelService {
         File modelFile = new File(modelProperties.getModelPath());
 
         if (modelFile.exists()) {
-            log.info("학습된 모델이 이미 존재합니다. 자동 학습을 건너뜜니다.");
+            log.info("학습된 모델이 이미 존재합니다. 자동 학습을 건너뜁니다.");
             return;
         }
 

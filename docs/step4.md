@@ -263,7 +263,7 @@ public class IrisController {
         @Autowired
         private ObjectMapper objectMapper;
 
-        @MockBean
+        @MockitoBean
         private IrisModelService irisModelService;
 
         @Test
@@ -291,6 +291,6 @@ public class IrisController {
     }
     ```
 
-5.  `MultiLayerNetworkConfig`에서 `@DependsOn("irisModelService")`를 제거하면 어떤 현상이 발생하나요? (파일이 생성되기 전에 로드를 시도하여 `null`이 반환되는지 확인해 보세요.)
+5.  `MultiLayerNetworkConfig`에서 `irisModelService.initModel()` 호출을 제거하면 어떤 현상이 발생하나요? (파일이 생성되기 전에 로드를 시도하여 `null`이 반환되는지 확인해 보세요.)
 
 ---

@@ -37,12 +37,12 @@
 ## **Step 4: 예측 서비스 엔진 개발 (Service & Controller)**
 
 * **목표:** 저장된 모델을 로드하여 실시간 예측 API 구축.
-* **내용:** `@PostConstruct`로 모델 로드, `INDArray` 행렬 연산을 통한 추론(Inference) 구현.
+* **내용:** `initModel`을 통한 모델 초기화, `INDArray` 행렬 연산을 통한 추론(Inference) 구현.
 
 ## **Step 5: 시각화 대시보드 구현 (Visualization)**
 
 * **목표:** 예측 데이터를 차트로 시각화하여 사용자에게 전달.
-* **내용:** * Thymeleaf 입력 폼 및 Fetch API 비동기 통신.
+* **내용:** Thymeleaf 입력 폼 및 Fetch API 비동기 통신.
 * **Chart.js**를 활용하여 품종별 확률 분포를 막대그래프로 시각화.
 
 

@@ -113,12 +113,18 @@ MultiLayerConfiguration conf = new NeuralNetConfiguration.Builder()
 ```java
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class IrisModelService {
-    private static final String MODEL_PATH = "model/iris-model.zip";
+    private final ModelProperties modelProperties;
+    private MultiLayerNetwork model;
+
+    public void setModel(MultiLayerNetwork model) {
+        this.model = model;
+    }
 
     @EventListener(ApplicationReadyEvent.class) // [1] 서버 시작 직후 실행
     public void initModel() throws IOException {
-        File modelFile = new File(MODEL_PATH);
+        File modelFile = new File(modelProperties.getModelPath());
 
         if (modelFile.exists()) {
             log.info("학습된 모델이 이미 존재합니다. 자동 학습을 건너뜁니다.");
@@ -150,19 +156,20 @@ public class IrisModelService {
         MultiLayerNetwork model = new MultiLayerNetwork(conf);
         model.init();
 
-        for(int i = 0; i < 30; i++) {
+        for(int i = 0; i < 300; i++) {
             model.fit(trainIter);
         }
 
         // 4. 모델 저장 (Serialization)
-        ModelSerializer.writeModel(model, new File(MODEL_PATH), true);
-        log.info("모델 학습 및 저장이 완료되었습니다: {}", MODEL_PATH);
+        ModelSerializer.writeModel(model, new File(modelProperties.getModelPath()), true);
+        log.info("모델 학습 및 저장이 완료되었습니다: {}", modelProperties.getModelPath());
     }
 }
 ```
 
 ### 4.2 주요 코드 포인트
 - **`@Service`**: 이 클래스가 비즈니스 로직을 수행하는 서비스 객체임을 Spring에게 알립니다.
+- **`@RequiredArgsConstructor`**: `final`로 선언된 필드(`ModelProperties`)를 자동으로 주입받기 위한 생성자를 만듭니다.
 - **`@EventListener(ApplicationReadyEvent.class)`**: 애플리케이션 구동이 완료된 시점에 `initModel()` 메서드를 자동으로 호출합니다.
 - **`File.exists()`**: 중복 학습을 방지하기 위해 파일 존재 여부를 먼저 체크합니다.
 - **`log.info()`**: 학습 진행 상황을 콘솔 창에 출력하여 사용자가 알 수 있게 합니다.
@@ -172,7 +179,7 @@ public class IrisModelService {
 ## 5. 확인 사항
 
 - 서버를 실행했을 때 콘솔 창에 "모델 파일이 없습니다. 학습을 시작합니다..."라는 로그가 출력되나요?
-- 학습이 끝난 후 `src/main/resources/` 폴더에 `iris-model.zip` 파일이 생겼나요?
+- 학습이 끝난 후 `model/` 폴더에 `iris-model.zip` 파일이 생겼나요?
 - 서버를 껐다가 다시 켰을 때는 "자동 학습을 건너뜁니다"라는 로그가 나오는지 확인해 보세요.
 
 ---
